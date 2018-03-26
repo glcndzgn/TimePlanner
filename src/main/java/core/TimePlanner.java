@@ -34,6 +34,9 @@ public class TimePlanner {
             case TODAY:
                 widget.setPosition(56,0);
                 break;
+            case CRONOMETER:
+                widget.setPosition(0,41);
+                break;
         }
 
         widget.addToFrame(mainFrame);

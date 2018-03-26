@@ -3,5 +3,6 @@ package widgets;
 public enum WidgetType {
 
     UTCCLOCK,
-    TODAY;
+    TODAY,
+    CRONOMETER;
 }

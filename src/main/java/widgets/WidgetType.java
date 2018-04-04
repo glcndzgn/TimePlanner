@@ -4,5 +4,6 @@ public enum WidgetType {
 
     UTCCLOCK,
     TODAY,
-    CRONOMETER;
+    CRONOMETER,
+    WORKTIMER;
 }

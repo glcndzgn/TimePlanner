@@ -20,9 +20,7 @@ public class Chronometer extends Widget{
 
     private int buttonState = 0;
     private int currentTime = 0;
-    private int resetButtonState = 0;
     private Timer timer;
-    private int wordcount = 0;
 
 
     public Chronometer() {
@@ -49,16 +47,14 @@ public class Chronometer extends Widget{
         button.setSize(40,40);
         button.addActionListener(e->{
             if (buttonState  == 0){
-                buttonState = 1;
                 play();
             }else {
-                buttonState = 0;
                 stop();
             }
-        });
+    });
         button.setIcon(playIcon);
         timer = new Timer(50,e->{
-            currentTime += 25;
+            currentTime += 50;
             label.setText(formatTime(currentTime));
         });
 
@@ -72,27 +68,36 @@ public class Chronometer extends Widget{
     }
 
     private void play(){
-        button.setIcon(playIcon);
+        button.setIcon(stopIcon);
         timer.start();
+        buttonState = 1;
 
     }
     private void stop(){
-        button.setIcon(stopIcon);
+        button.setIcon(playIcon);
         timer.stop();
+        buttonState = 0;
     }
     private void reset(){
-
+        currentTime = 0;
+        label.setText("0.0.0.00");
+        stop();
     }
+
 
     private String formatTime(int millis){
 
         int seconds = millis/1000;
         int minutes = seconds/60;
         int hours   = minutes/60;
-        int ms   = millis % 100;
+        int ms      = millis % 1000;
 
+        String strMs = Integer.toString(ms);
+        if(strMs.length()> 2) {
+            strMs = strMs.substring(0, strMs.length() - 1);
+        }
 
-        return hours+"."+minutes+"."+seconds+"."+ms;
+        return hours+"."+minutes+"."+seconds+"."+strMs;
     }
 
     @Override
